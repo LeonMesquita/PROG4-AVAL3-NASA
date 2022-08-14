@@ -41,6 +41,13 @@ class ImageCard extends StatelessWidget {
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: 300,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/images/error_image.png',
+                          height: 300,
+                          fit: BoxFit.cover,
+                        );
+                      },
                     ),
                   ),
                   Container(
