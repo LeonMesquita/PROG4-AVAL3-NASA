@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog4_aval3_nasa/components/custom_button.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/main_page.dart';
 
 class MenuPage extends StatelessWidget {
@@ -27,29 +28,12 @@ class MenuPage extends StatelessWidget {
                     fontWeight: FontWeight.w900),
                 textAlign: TextAlign.center,
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  height: 70,
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MainPage()));
-                      },
-                      child: const Text(
-                        'Iniciar',
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w900,
-                            color: Color.fromARGB(255, 32, 29, 224)),
-                      )),
-                ),
-              )
+              CustomButton(
+                  buttonText: 'Iniciar',
+                  onpress: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MainPage()));
+                  }),
             ],
           ),
         ),

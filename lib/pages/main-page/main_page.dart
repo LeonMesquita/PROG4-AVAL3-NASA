@@ -4,6 +4,7 @@ import 'package:prog4_aval3_nasa/pages/main-page/components/alert_dialog.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/create_images.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/image_card.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/search_bar.dart';
+import 'package:prog4_aval3_nasa/pages/team-page/team_page.dart';
 import 'package:prog4_aval3_nasa/requisitions/image_requisitions.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,6 +27,22 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text('NASA'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              getImages(listLength);
+              setState(() {});
+            },
+            icon: Icon(Icons.refresh),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const TeamPage()));
+            },
+            icon: const Icon(Icons.group),
+          ),
+        ],
       ),
       body: Container(
         decoration: const BoxDecoration(
