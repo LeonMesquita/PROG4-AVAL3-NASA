@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:prog4_aval3_nasa/components/image_component.dart';
 
 class ImageCard extends StatelessWidget {
   final String imageSrc;
@@ -17,6 +18,8 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       child: GestureDetector(
@@ -35,19 +38,9 @@ class ImageCard extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
                     ),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/Loading.gif',
-                      image: imageSrc,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 300,
-                      imageErrorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          'assets/images/error_image.png',
-                          height: 300,
-                          fit: BoxFit.cover,
-                        );
-                      },
+                    child: ImageComponent(
+                      imageUrl: imageSrc,
+                      imageSize: size.height * .45,
                     ),
                   ),
                   Container(

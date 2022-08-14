@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:prog4_aval3_nasa/pages/image-page/image_page.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/alert_dialog.dart';
+import 'package:prog4_aval3_nasa/pages/main-page/components/create_images.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/image_card.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/components/search_bar.dart';
-import 'package:prog4_aval3_nasa/repository/image_repository.dart';
+import 'package:prog4_aval3_nasa/requisitions/image_requisitions.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key? key}) : super(key: key);
@@ -72,42 +73,15 @@ class _MainPageState extends State<MainPage> {
                         });
                       },
                     ),
-                    createImages(context, snapshot)
+                    createImages(context, snapshot, listLength, () {
+                      setState(() {});
+                    })
                   ],
                 );
               },
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget createImages(BuildContext context, AsyncSnapshot snapshot) {
-    return Expanded(
-      child: RefreshIndicator(
-        onRefresh: () async {
-          await getImages(listLength);
-          setState(() {});
-        },
-        child: ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: ImageCard(
-                    imageSrc: snapshot.data[index].url,
-                    onclick: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: ((context) =>
-                              ImagePage(selectedImage: snapshot.data[index])),
-                        ),
-                      );
-                    },
-                    imageTitle: snapshot.data[index].title,
-                    imageDate: snapshot.data[index].date),
-              );
-            }),
       ),
     );
   }

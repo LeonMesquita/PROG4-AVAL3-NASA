@@ -16,6 +16,7 @@ Future getImages(int listLength) async {
               url: item['url'],
               title: item['title'],
               date: item['date'],
+              copyright: item['copyright'],
               explanation: item['explanation']),
         ),
       )
