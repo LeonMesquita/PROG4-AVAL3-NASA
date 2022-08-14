@@ -8,6 +8,7 @@ Future getImages(int listLength) async {
   List<ImageModel> generatedList = [];
   http.Response response =
       await http.get(Uri.parse('$apiUrl?count=$listLength&api_key=$apiKey'));
+
   Iterable responseMap = jsonDecode(utf8.decode(response.bodyBytes));
   responseMap
       .map(

@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 
 class ErrorDialog extends StatelessWidget {
   final VoidCallback onpress;
-  const ErrorDialog({Key? key, required this.onpress}) : super(key: key);
+  final String dialogMessage;
+  final String buttonText;
+  const ErrorDialog(
+      {Key? key,
+      required this.onpress,
+      required this.dialogMessage,
+      required this.buttonText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text(
-        'Erro ao obter imagens!',
+      title: Text(
+        dialogMessage,
         textAlign: TextAlign.center,
       ),
       actions: [
@@ -18,9 +25,9 @@ class ErrorDialog extends StatelessWidget {
             onPressed: onpress,
             style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 16, 13, 218)),
-            child: const Text(
-              'Tentar novamente',
-              style: TextStyle(fontSize: 18),
+            child: Text(
+              buttonText,
+              style: const TextStyle(fontSize: 18),
             ),
           ),
         ),

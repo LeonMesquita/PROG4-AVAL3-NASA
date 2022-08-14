@@ -20,7 +20,7 @@ class SearchBar extends StatelessWidget {
           const Align(
             alignment: Alignment.bottomLeft,
             child: Text(
-              'Informe a quantidade de imagens',
+              'Informe a quantidade de imagens (MAX 20)',
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),

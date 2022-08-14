@@ -26,7 +26,11 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text('NASA'),
+        title: const Text(
+          'APOD',
+          style: TextStyle(fontWeight: FontWeight.w900),
+        ),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
@@ -69,6 +73,8 @@ class _MainPageState extends State<MainPage> {
                   default:
                     if (snapshot.hasError) {
                       return ErrorDialog(
+                        dialogMessage: 'Erro ao obter imagens!',
+                        buttonText: 'Tentar novamente',
                         onpress: () {
                           setState(() {
                             listLength = 20;
@@ -84,10 +90,14 @@ class _MainPageState extends State<MainPage> {
                       controller: textController,
                       hintText: listLength.toString(),
                       onSearch: () {
-                        setState(() {
-                          listLength = int.parse(textController.text);
-                          getImages(listLength);
-                        });
+                        listLength = int.parse(textController.text);
+                        if (listLength < 1 || listLength > 20) {
+                          _showDialog();
+                        } else {
+                          setState(() {
+                            getImages(listLength);
+                          });
+                        }
                       },
                     ),
                     createImages(context, snapshot, listLength, () {
@@ -100,6 +110,18 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => ErrorDialog(
+          onpress: () {
+            Navigator.pop(context);
+          },
+          buttonText: 'Tentar novamente',
+          dialogMessage: 'A quantidade de imagens deve estar entre 1 e 20'),
     );
   }
 }
