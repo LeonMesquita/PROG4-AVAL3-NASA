@@ -11,20 +11,43 @@ class ImagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.network(
-              selectedImage.url,
-              width: double.infinity,
-              fit: BoxFit.cover,
+      body: Column(
+        children: [
+          Image.network(
+            selectedImage.url,
+            width: double.infinity,
+            height: 300,
+            fit: BoxFit.cover,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      selectedImage.title,
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Informações da imagem',
+                      textAlign: TextAlign.start,
+                    ),
+                    Text(selectedImage.url),
+                    Text(selectedImage.date.toString()),
+                    Text(
+                      selectedImage.explanation,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Text(selectedImage.url),
-            Text(selectedImage.title),
-            Text(selectedImage.date.toString()),
-            Text(selectedImage.explanation),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

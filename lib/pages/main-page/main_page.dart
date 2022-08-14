@@ -48,44 +48,54 @@ class _MainPageState extends State<MainPage> {
 
 //https://i.pinimg.com/originals/17/2b/0e/172b0eb9874db3c04104c9f5f0589a90.jpg
     return Scaffold(
-      appBar: AppBar(),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text('NASA'),
+      ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: NetworkImage(''), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage('assets/images/space.jpg'), fit: BoxFit.cover),
         ),
         child: Center(
-          child: FutureBuilder(
-            future: getImages(),
-            builder: (context, snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                case ConnectionState.none:
-                  return Container(
-                    width: 300,
-                    height: 300,
-                    alignment: Alignment.center,
-                    child: const CircularProgressIndicator(),
-                  );
-                default:
-                  if (snapshot.hasError) return Container();
-              }
-              return //createImages(context, snapshot);
-                  Column(
-                children: [
-                  SearchBar(
-                    controller: textController,
-                    hintText: listLength.toString(),
-                    onSearch: () {
-                      setState(() {
-                        listLength = int.parse(textController.text);
-                        getImages();
-                      });
-                    },
-                  ),
-                  createImages(context, snapshot)
-                ],
-              );
-            },
+          child: SafeArea(
+            child: FutureBuilder(
+              future: getImages(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                  case ConnectionState.none:
+                    return Container(
+                      width: 300,
+                      height: 300,
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 6,
+                      ),
+                    );
+                  default:
+                    if (snapshot.hasError) return Container();
+                }
+                return Column(
+                  children: [
+                    SearchBar(
+                      controller: textController,
+                      hintText: listLength.toString(),
+                      onSearch: () {
+                        setState(() {
+                          listLength = int.parse(textController.text);
+                          getImages();
+                        });
+                      },
+                    ),
+                    createImages(context, snapshot)
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

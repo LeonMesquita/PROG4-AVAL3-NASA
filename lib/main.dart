@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prog4_aval3_nasa/pages/main-page/main_page.dart';
+import 'package:prog4_aval3_nasa/pages/menu-page/menu_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: MenuPage(),
     );
   }
 }

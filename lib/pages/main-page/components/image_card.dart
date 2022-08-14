@@ -44,11 +44,11 @@ class ImageCard extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 5),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
                     width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(15),
                         bottomRight: Radius.circular(15),
                       ),

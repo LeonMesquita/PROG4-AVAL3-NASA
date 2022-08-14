@@ -22,7 +22,9 @@ class SearchBar extends StatelessWidget {
           const Align(
             alignment: Alignment.bottomLeft,
             child: Text(
-              'Selecione a quantidade de imagens',
+              'Informe a quantidade de imagens',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 10),
@@ -36,6 +38,8 @@ class SearchBar extends StatelessWidget {
                   decoration: InputDecoration(
                       hintText: hintText,
                       isDense: true,
+                      filled: true,
+                      fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -43,7 +47,8 @@ class SearchBar extends StatelessWidget {
                           onPressed: onSearch,
                           icon: const Icon(
                             Icons.search,
-                            size: 30,
+                            color: Color.fromARGB(255, 17, 79, 129),
+                            size: 35,
                           ))),
                 ),
               ),
